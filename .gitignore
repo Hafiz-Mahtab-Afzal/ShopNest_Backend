@@ -1,0 +1,27 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+
+# Environment variables (secrets: MongoDB, Redis, JWT, AWS, Stripe, Gmail, WhatsApp)
+.env
+.env.*
+!.env.example
+
+# User uploaded images (multer recreates this folder automatically)
+public/uploads/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Backups
+*.zip
+
+# Editor / OS
+.vscode/*
+.idea
+.DS_Store
+Thumbs.db
