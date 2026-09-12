@@ -18,7 +18,7 @@ const app = express();
 
 // it will allow browser from server to request api
 app.use(cors({
-  origin: ["http://localhost:5173"],
+  origin: ["http://localhost:5173", process.env.CLIENT_URL as string],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
@@ -55,6 +55,13 @@ dbconnect();
 
 // start express server  (5)
 const port = process.env.PORT || 5000;
-app.listen(port, () => {
-  console.log(`server is running on http://localhost:${port}`);
-});
+
+// Vercel par listen nahi karna, sirf local computer par
+if (!process.env.VERCEL) {
+  app.listen(port, () => {
+    console.log(`server is running on http://localhost:${port}`);
+  });
+}
+
+// Vercel ko app chahiye
+export default app;
